@@ -1,3 +1,6 @@
+# 添加一个 ARG 指令来接收构建参数
+ARG TARGETARCH
+
 FROM golang:1-alpine AS builder
 
 COPY . /go/src/github.com/finb/bark-server
@@ -9,7 +12,7 @@ RUN set -ex \
     && BUILD_VERSION=$(git describe --tags) \
     && BUILD_DATE=$(date "+%F %T") \
     && COMMIT_SHA1=$(git rev-parse HEAD) \
-    && go install -trimpath -ldflags \
+    && GOARCH=${TARGETARCH} go install -trimpath -ldflags \
             "-X 'main.version=${BUILD_VERSION}' \
              -X 'main.buildDate=${BUILD_DATE}' \
              -X 'main.commitID=${COMMIT_SHA1}' \
