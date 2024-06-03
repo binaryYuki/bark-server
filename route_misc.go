@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"runtime"
 	"time"
@@ -28,9 +28,14 @@ func init() {
 			if err != nil {
 				return c.Status(500).SendString("Health check failed")
 			}
-			defer resp.Body.Close()
+			defer func(Body io.ReadCloser) {
+				err := Body.Close()
+				if err != nil {
 
-			body, err := ioutil.ReadAll(resp.Body)
+				}
+			}(resp.Body)
+
+			body, err := io.ReadAll(resp.Body)
 			if err != nil {
 				return c.Status(500).SendString("Failed to read response body")
 			}
