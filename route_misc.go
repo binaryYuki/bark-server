@@ -1,6 +1,9 @@
 package main
 
 import (
+	"encoding/json"
+	"io/ioutil"
+	"net/http"
 	"runtime"
 	"time"
 
@@ -21,6 +24,32 @@ func init() {
 		// healthz func only returns a "ok" string, similar to ping func,
 		// healthz func is usually used for health check
 		router.Get("/healthz", func(c *fiber.Ctx) error {
+			resp, err := http.Get("https://ipinfo.io")
+			if err != nil {
+				return c.Status(500).SendString("Health check failed")
+			}
+			defer resp.Body.Close()
+
+			body, err := ioutil.ReadAll(resp.Body)
+			if err != nil {
+				return c.Status(500).SendString("Failed to read response body")
+			}
+
+			// 创建一个映射来接收 JSON 数据
+			ipinfo := make(map[string]interface{})
+			err = json.Unmarshal(body, &ipinfo)
+			if err != nil {
+				return c.Status(500).SendString("Failed to parse JSON")
+			}
+
+			// 删除 readme 字段
+			delete(ipinfo, "readme")
+
+			return c.JSON(map[string]interface{}{
+				"status": "ok",
+				"health": "passed",
+				"ipinfo": ipinfo, // 直接使用映射作为值
+			})
 			return c.SendString("ok")
 		})
 
@@ -30,6 +59,7 @@ func init() {
 			return c.JSON(map[string]interface{}{
 				"version": version,
 				"build":   buildDate,
+				"author":  "binaryYuki <noreply.tzpro.xyz>",
 				"arch":    runtime.GOOS + "/" + runtime.GOARCH,
 				"commit":  commitID,
 				"devices": devices,

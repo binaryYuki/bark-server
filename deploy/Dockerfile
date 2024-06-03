@@ -17,7 +17,7 @@ RUN set -ex \
 
 FROM alpine
 
-LABEL maintainer="mritd <mritd@linux.com>"
+LABEL maintainer="binaryYuki <noreply@tzpro.xyz>"
 
 # set up nsswitch.conf for Go's "netgo" implementation
 # - https://github.com/golang/go/blob/go1.9.1/src/net/conf.go#L194-L275
@@ -28,11 +28,11 @@ RUN echo 'hosts: files dns' > /etc/nsswitch.conf
 # override it with `--build-arg TIMEZONE=xxxx`
 ARG TIMEZONE=Asia/Shanghai
 
-ENV TZ=${TIMEZONE}
+ENV TZ ${TIMEZONE}
 
 RUN set -ex \
     && apk upgrade \
-    && apk add --no-cache bash ca-certificates tzdata \
+    && apk add --no-cache bash ca-certificates tzdata curl \
     && ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
     && echo ${TZ} > /etc/timezone
 

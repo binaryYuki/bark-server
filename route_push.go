@@ -1,10 +1,9 @@
 package main
 
 import (
+	"github.com/gofiber/fiber/v2/utils"
 	"net/url"
 	"strings"
-
-	"github.com/gofiber/fiber/v2/utils"
 
 	"github.com/finb/bark-server/v2/apns"
 
@@ -28,6 +27,8 @@ func init() {
 		router.Get("/:device_key/:title/:body", func(c *fiber.Ctx) error { return routeDoPush(c) })
 		router.Post("/:device_key/:title/:body", func(c *fiber.Ctx) error { return routeDoPush(c) })
 
+		router.Get("/:device_key/:category/:title/:body", func(c *fiber.Ctx) error { return routeDoPush(c) })
+		router.Post("/:device_key/:category/:title/:body", func(c *fiber.Ctx) error { return routeDoPush(c) })
 		router.Get("/:device_key/:title/:subtitle/:body", func(c *fiber.Ctx) error { return routeDoPush(c) })
 		router.Post("/:device_key/:title/:subtitle/:body", func(c *fiber.Ctx) error { return routeDoPush(c) })
 	})
@@ -91,6 +92,8 @@ func push(c *fiber.Ctx, params map[string]interface{}) error {
 			switch strings.ToLower(string(key)) {
 			case "device_key":
 				msg.DeviceKey = val
+			case "category":
+				msg.Category = val
 			case "subtitle":
 				msg.Subtitle = val
 			case "title":

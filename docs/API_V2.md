@@ -24,6 +24,7 @@ the V2 version.**
 | title | string | Notification title (font size would be larger than the body) |
 | subtitle | string | | Notification subtitle |
 | body  | string | Notification content |
+| category | string | Reserved field, no use yet |
 | device_key | string | The key for each device |
 | level (optional) | string | `'active'`, `'timeSensitive'`, or `'passive'` |
 | badge (optional) | integer | The number displayed next to App icon ([Apple Developer](https://developer.apple.com/documentation/usernotifications/unnotificationcontent/1649864-badge)) |
@@ -45,6 +46,7 @@ curl -X "POST" "http://127.0.0.1:8080/push" \
   "device_key": "ynJ5Ft4atkMkWeo2PAvFhF",
   "title": "bleem",
   "badge": 1,
+  "category": "myNotificationCategory",
   "sound": "minuet.caf",
   "icon": "https://day.app/assets/images/avatar.jpg",
   "group": "test",
@@ -123,6 +125,7 @@ def send_request():
                 "body": "Test Bark Server",
                 "device_key": "nysrshcqielvoxsa",
                 "title": "bleem",
+                "category": "myNotificationCategory",
                 "sound": "minuet.caf",
                 "badge": 1,
                 "icon": "https://day.app/assets/images/avatar.jpg",
@@ -245,6 +248,7 @@ curl_setopt_array($curl, [
   "device_key": "ynJ5Ft4atkMkWeo2PAvFhF",
   "title": "bleem",
   "badge": 1,
+  "category": "myNotificationCategory",
   "sound": "minuet.caf",
   "icon": "https://day.app/assets/images/avatar.jpg",
   "group": "test",
