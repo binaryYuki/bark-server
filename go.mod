@@ -4,6 +4,8 @@ module github.com/finb/bark-server/v2
 
 go 1.22
 
+toolchain go1.22.3
+
 require (
 	github.com/go-sql-driver/mysql v1.8.1
 	github.com/gofiber/fiber/v2 v2.52.5
