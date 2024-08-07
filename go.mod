@@ -2,7 +2,7 @@
 
 module github.com/finb/bark-server/v2
 
-go 1.22
+go 1.21
 
 toolchain go1.22.3
 
@@ -12,10 +12,10 @@ require (
 	github.com/json-iterator/go v1.1.12
 	github.com/lithammer/shortuuid/v3 v3.0.7
 	github.com/mritd/logger v0.0.6
-	github.com/sideshow/apns2 v0.25.0
-	github.com/urfave/cli/v2 v2.27.4
-	go.etcd.io/bbolt v1.3.11
-	golang.org/x/net v0.31.0
+	github.com/sideshow/apns2 v0.23.0
+	github.com/urfave/cli/v2 v2.27.2
+	go.etcd.io/bbolt v1.3.10
+	golang.org/x/net v0.28.0
 )
 
 require (
@@ -35,10 +35,10 @@ require (
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasthttp v1.51.0 // indirect
 	github.com/valyala/tcplisten v1.0.0 // indirect
-	github.com/xrash/smetrics v0.0.0-20240521201337-686a1a2994c1 // indirect
+	github.com/xrash/smetrics v0.0.0-20240312152122-5f08fbb34913 // indirect
 	go.uber.org/atomic v1.9.0 // indirect
 	go.uber.org/multierr v1.7.0 // indirect
 	go.uber.org/zap v1.20.0 // indirect
-	golang.org/x/sys v0.27.0 // indirect
-	golang.org/x/text v0.20.0 // indirect
+	golang.org/x/sys v0.23.0 // indirect
+	golang.org/x/text v0.17.0 // indirect
 )
