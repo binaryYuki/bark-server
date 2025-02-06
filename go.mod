@@ -3,7 +3,7 @@
 module github.com/finb/bark-server/v2
 
 go 1.21
-toolchain go1.22.5
+toolchain go1.23.6
 
 require (
 	github.com/go-sql-driver/mysql v1.8.1
@@ -13,7 +13,7 @@ require (
 	github.com/mritd/logger v0.0.6
 	github.com/sideshow/apns2 v0.25.0
 	github.com/urfave/cli/v2 v2.27.5
-	go.etcd.io/bbolt v1.3.11
+	go.etcd.io/bbolt v1.4.0
 	golang.org/x/net v0.34.0
 )
 
