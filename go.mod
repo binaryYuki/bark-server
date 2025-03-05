@@ -14,7 +14,7 @@ require (
 	github.com/sideshow/apns2 v0.25.0
 	github.com/urfave/cli/v2 v2.27.5
 	go.etcd.io/bbolt v1.4.0
-	golang.org/x/net v0.35.0
+	golang.org/x/net v0.36.0
 )
 
 require (
